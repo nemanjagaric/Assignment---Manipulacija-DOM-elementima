@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Assignment 2 - Website Building</title>
+        <link rel="stylesheet" href="/Users/Nemanja Marina/Desktop/Website Building/manipulacija dom elementima assingment/css/all.css">
+        <style>
+            body {
+                box-sizing: border-box;
+                font-family: sans-serif;
+            }
+
+            #login-container {
+                width: 460px;
+                margin: 0 auto;
+                position: relative;
+            }
+            form label, 
+            form input {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            form input {
+                padding: 8px;
+            }
+
+            form label {
+                font-weight: bold;
+            }
+
+            form div {
+                margin: 16px 0px;
+            }
+            
+        </style>
+    </head>
+
+    <body>
+
+        <div id="login-container">
+            
+
+            <form>
+                <div id="username-input">
+                    
+                    <label for="username">Username:</label>
+                    <input id="username" type="text">
+                </div>
+
+                <div id="password-input">
+                    <label for="password">Password:</label>
+                    <input id="password" type="password">
+                </div>
+
+                <input id="submit" type="submit" value="Login">
+            </form>
+</div>
+            <script>
+
+                var loginContainer = document.getElementById("login-container");
+                var usernameInput = document.getElementById("username-input");
+                var passwordInput = document.getElementById("password-input");
+                var corectUsername = document.getElementById("username");
+                var corectPassword = document.getElementById("password");
+                var submit = document.getElementById("submit");
+                //new paragraphs
+                var newUsernameParagraph = document.createElement("p");
+                var newPasswordParagraph = document.createElement("p");
+                document.body.appendChild(newUsernameParagraph);
+                document.body.appendChild(newPasswordParagraph);
+                var succesLoginParagraph = document.createElement("p");
+                document.body.appendChild(succesLoginParagraph);
+                //username check-icon
+                var checkUsernameIcon = document.createElement("p");
+                var checkTxt = document.createElement ("i");
+                checkTxt.setAttribute("class","fas fa-check");
+                checkUsernameIcon.appendChild(checkTxt);
+                usernameInput.appendChild(checkUsernameIcon);
+                checkUsernameIcon.style.display = "none";
+                //username error-icon
+                var errorUsernameIcon = document.createElement("p");
+                var errorTxt = document.createElement ("i");
+                errorTxt.setAttribute("class","fas fa-times");
+                errorUsernameIcon.appendChild(errorTxt);
+                usernameInput.appendChild(errorUsernameIcon);
+                errorUsernameIcon.style.display = "none";
+                //password check-icon
+                var checkPasswordIcon = document.createElement("p");
+                var checkTxt = document.createElement ("i");
+                checkTxt.setAttribute("class","fas fa-check");
+                checkPasswordIcon.appendChild(checkTxt);
+                passwordInput.appendChild(checkPasswordIcon);
+                checkPasswordIcon.style.display = "none";
+                //password error-icon
+                var errorPasswordIcon = document.createElement("p");
+                var errorTxt = document.createElement ("i");
+                errorTxt.setAttribute("class","fas fa-times");
+                errorPasswordIcon.appendChild(errorTxt);
+                passwordInput.appendChild(errorPasswordIcon);
+                errorPasswordIcon.style.display = "none";               
+
+                loginContainer.addEventListener("submit", function(e){                    
+                    if (corectUsername.value == "new_user") {
+                        corectUsername.style.border = "2px solid #1cc51c";
+                        usernameInput.style.position = "relative";
+                        checkUsernameIcon.style.color = "#1cc51c";
+                        checkUsernameIcon.style.display = "block";
+                        checkUsernameIcon.style.position = "absolute";
+                        checkUsernameIcon.style.right = "10px";
+                        checkUsernameIcon.style.top = "13px";
+                        e.preventDefault();
+                    }
+                    if (corectUsername.value != "new_user") {
+                        newUsernameParagraph.innerHTML = "This is invalid Username !"
+                        newUsernameParagraph.style.textAlign = "center";
+                        newUsernameParagraph.style.color = "red";
+                        corectUsername.style.border = "2px solid red";
+                        usernameInput.style.position = "relative";
+                        errorUsernameIcon.style.color = "red";
+                        errorUsernameIcon.style.display = "block";
+                        errorUsernameIcon.style.position = "absolute";
+                        errorUsernameIcon.style.right = "10px";
+                        errorUsernameIcon.style.top = "13px";
+                        e.preventDefault();                        
+                    }
+                    if (corectUsername.value == "") {
+                        newUsernameParagraph.innerHTML = "Please enter the Username !"
+                        newUsernameParagraph.style.textAlign = "center";
+                        newUsernameParagraph.style.color = "red";
+                        corectUsername.style.border = "2px solid red";
+                        usernameInput.style.position = "relative";
+                        errorUsernameIcon.style.color = "red";
+                        errorUsernameIcon.style.display = "block";
+                        errorUsernameIcon.style.position = "absolute";
+                        errorUsernameIcon.style.right = "10px";
+                        errorUsernameIcon.style.top = "13px";
+                        e.preventDefault();
+                    }
+                    if (corectPassword.value == "123456789") {
+                        corectPassword.style.border = "2px solid #1cc51c";
+                        passwordInput.style.position = "relative";
+                        checkPasswordIcon.style.color = "#1cc51c";
+                        checkPasswordIcon.style.display = "block";
+                        checkPasswordIcon.style.position = "absolute";
+                        checkPasswordIcon.style.right = "10px";
+                        checkPasswordIcon.style.top = "13px";
+                        e.preventDefault();
+                    }
+                    if (corectPassword.value != "123456789") {
+                        newPasswordParagraph.innerHTML = "This is invalid Password !"
+                        newPasswordParagraph.style.textAlign = "center";
+                        newPasswordParagraph.style.color = "red";
+                        corectPassword.style.border = "2px solid red";
+                        passwordInput.style.position = "relative";
+                        errorPasswordIcon.style.color = "red";
+                        errorPasswordIcon.style.display = "block";
+                        errorPasswordIcon.style.position = "absolute";
+                        errorPasswordIcon.style.right = "10px";
+                        errorPasswordIcon.style.top = "13px";
+                        e.preventDefault();                        
+                    }
+                    if (corectPassword.value == "") {
+                        newPasswordParagraph.innerHTML = "Please enter the Password !"
+                        newPasswordParagraph.style.textAlign = "center";
+                        newPasswordParagraph.style.color = "red";
+                        corectPassword.style.border = "2px solid red";
+                        passwordInput.style.position = "relative";
+                        errorPasswordIcon.style.color = "red";
+                        errorPasswordIcon.style.display = "block";
+                        errorPasswordIcon.style.position = "absolute";
+                        errorPasswordIcon.style.right = "10px";
+                        errorPasswordIcon.style.top = "13px";
+                        e.preventDefault();
+                    }
+                    if (corectUsername.value == "new_user" && corectPassword.value == "123456789" ) {
+                        succesLoginParagraph.innerHTML = "Succesful login !";
+                        succesLoginParagraph.style.color = "#1cc51c";
+                        succesLoginParagraph.style.textAlign = "center";                        
+                    }
+                })
+                
+            </script>
+    </body>
+</html>
